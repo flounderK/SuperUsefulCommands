@@ -1,0 +1,10 @@
+#stop and remove the last docker container that was created. super useful for dev
+docker stop $(docker ps -a --format {{.ID}} | head -n 1) && docker rm $(docker ps -a --format {{.ID}} | head -n 1)
+
+#enter the last created container as root, good for checking what is broken
+docker exec -it -u root $(docker ps -a --format {{.ID}} | head -n 1) /bin/bash
+
+#get the ip of the last docker container created
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -a --format '{{.ID}}' | head -n 1)
+
+
