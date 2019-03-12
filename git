@@ -1,0 +1,2 @@
+# clone over ssh
+git clone git@github.com:<github username>/<github repo>.git
