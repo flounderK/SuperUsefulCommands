@@ -1,3 +1,4 @@
 #!/bin/bash
-
-find -type f "$@" | xargs file | grep -v -P ".*:\s+(symbolic link to|empty|.*, no read permission)"
+# this was originally meant to find all of the files in /sys/devices that contained any useful info, but I guess it might work other places too
+find -type f "$@" 2> /dev/null | xargs file 2> /dev/null | grep -v -P ".*:\s+(symbolic link to|empty|.*, no read permission)"
+#ls -Ap "$@" | grep -v / | xargs file 2> /dev/null | grep -v -P ".*:\s+(symbolic link to|empty|.*, no read permission)"
